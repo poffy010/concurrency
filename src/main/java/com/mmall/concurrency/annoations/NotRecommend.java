@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * 用来标记线程安全的写法
  */
-@Target(ElementType.ANNOTATION_TYPE)
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.SOURCE)
 public @interface NotRecommend {
     String value() default "";
