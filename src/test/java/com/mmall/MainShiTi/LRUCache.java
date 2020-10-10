@@ -15,15 +15,15 @@ public class LRUCache {
         head.next = tail;
     }
 
-    public static CacheNode get(int key) {
+    public static int get(int key) {
         if(!valModelMap.containsKey(key)){
-            return null;
+            return -1;
         }
         CacheNode current = valModelMap.get(key);
         current.prev.next = current.next;
         current.next.prev = current.prev;
         moveToTail(current);//移动到最后一位
-        return valModelMap.get(key);
+        return valModelMap.get(key).value;
     }
 
     private static void moveToTail(CacheNode current) {
@@ -34,7 +34,7 @@ public class LRUCache {
     }
 
     public static void put(int key, int value) {
-        if(get(key) != null){
+        if(get(key) != -1){
             valModelMap.get(key).value = value;
             return;
         }
@@ -62,9 +62,9 @@ public class LRUCache {
         put(3,3);
         put(4,4);
         put(2,2);
-        System.out.println(get(2).prev.value);
-        System.out.println(get(4).prev.value);
-        System.out.println(get(3).prev.value);
+//        System.out.println(get(2).prev.value);
+//        System.out.println(get(4).prev.value);
+//        System.out.println(get(3).prev.value);
     }
 }
 
