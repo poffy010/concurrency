@@ -201,59 +201,59 @@ public class HuanxingLeetcode {
     }
 
     public ListNode addTwoNumbers(ListNode l1,ListNode l2) {
-        ListNode dummy = new ListNode(0);
-        ListNode l3 = new ListNode(0);
+        ListNode dummy = new ListNode( 0 );
+        ListNode l3 = new ListNode( 0 );
 
         int overNum = 0;
-        l3.val = ((l1 != null ? l1.val : 0) + (l2 != null ? l2.val : 0))%10;
-        overNum = ((l1 != null ? l1.val : 0) + (l2 != null ? l2.val : 0))/10;
+        l3.val = ((l1 != null ? l1.val : 0) + (l2 != null ? l2.val : 0)) % 10;
+        overNum = ((l1 != null ? l1.val : 0) + (l2 != null ? l2.val : 0)) / 10;
         dummy = l3;
-        if (l1.next != null || l2.next != null || overNum > 0 ) {
-            l3.next = new ListNode(0);
+        if (l1.next != null || l2.next != null || overNum > 0) {
+            l3.next = new ListNode( 0 );
             l3 = l3.next;
         } else {
             l3 = null;
         }
-        l1 = l1!=null?l1.next:null;
-        l2 = l2!=null?l2.next:null;
+        l1 = l1 != null ? l1.next : null;
+        l2 = l2 != null ? l2.next : null;
 
         while (l3 != null || overNum > 0) {
-            l3.val = (((l1 != null ? l1.val : 0) + (l2 != null ? l2.val : 0))%10 + overNum)%10;
-            overNum = ((l1 != null ? l1.val : 0) + (l2 != null ? l2.val : 0) + overNum)/10;
-            if ((l1!=null?(l1.next!= null):false) || (l2!=null?(l2.next!= null):false) || overNum > 0) {
+            l3.val = (((l1 != null ? l1.val : 0) + (l2 != null ? l2.val : 0)) % 10 + overNum) % 10;
+            overNum = ((l1 != null ? l1.val : 0) + (l2 != null ? l2.val : 0) + overNum) / 10;
+            if ((l1 != null ? (l1.next != null) : false) || (l2 != null ? (l2.next != null) : false) || overNum > 0) {
                 l3.next = new ListNode( 0 );
                 l3 = l3.next;
             } else {
                 l3 = null;
             }
 
-            l1 = l1!=null?l1.next:null;
-            l2 = l2!=null?l2.next:null;
+            l1 = l1 != null ? l1.next : null;
+            l2 = l2 != null ? l2.next : null;
         }
 
         return dummy;
     }
 
     /*查找常用字符*/
-    public List<String> commonChars(String[] A) {
+    public List <String> commonChars(String[] A) {
         int[] minfreq = new int[26];
-        Arrays.fill(minfreq, Integer.MAX_VALUE);
-        for (String word: A) {
+        Arrays.fill( minfreq,Integer.MAX_VALUE );
+        for (String word : A) {
             int[] freq = new int[26];
             int length = word.length();
             for (int i = 0; i < length; ++i) {
-                char ch = word.charAt(i);
+                char ch = word.charAt( i );
                 ++freq[ch - 'a'];
             }
             for (int i = 0; i < 26; ++i) {
-                minfreq[i] = Math.min(minfreq[i], freq[i]);
+                minfreq[i] = Math.min( minfreq[i],freq[i] );
             }
         }
 
-        List<String> ans = new ArrayList<String>();
+        List <String> ans = new ArrayList <String>();
         for (int i = 0; i < 26; ++i) {
             for (int j = 0; j < minfreq[i]; ++j) {
-                ans.add(String.valueOf((char) (i + 'a')));
+                ans.add( String.valueOf( ( char ) (i + 'a') ) );
             }
         }
         return ans;
@@ -270,12 +270,12 @@ public class HuanxingLeetcode {
                 if (l == 0) {
                     dp[i][j] = true;
                 } else if (l == 1) {
-                    dp[i][j] = (s.charAt(i) == s.charAt(j));
+                    dp[i][j] = (s.charAt( i ) == s.charAt( j ));
                 } else {
-                    dp[i][j] = (s.charAt(i) == s.charAt(j) && dp[i + 1][j - 1]);
+                    dp[i][j] = (s.charAt( i ) == s.charAt( j ) && dp[i + 1][j - 1]);
                 }
                 if (dp[i][j] && l + 1 > ans.length()) {
-                    ans = s.substring(i, i + l + 1);
+                    ans = s.substring( i,i + l + 1 );
                 }
             }
         }
@@ -283,8 +283,8 @@ public class HuanxingLeetcode {
     }
 
     /*K 个一组翻转链表*/
-    public ListNode reverseKGroup(ListNode head, int k) {
-        ListNode hair = new ListNode(0);
+    public ListNode reverseKGroup(ListNode head,int k) {
+        ListNode hair = new ListNode( 0 );
         hair.next = head;
         ListNode pre = hair;
 
@@ -298,7 +298,7 @@ public class HuanxingLeetcode {
                 }
             }
             ListNode nex = tail.next;
-            ListNode[] reverse = myReverse(head, tail);
+            ListNode[] reverse = myReverse( head,tail );
             head = reverse[0];
             tail = reverse[1];
             // 把子链表重新接回原链表
@@ -311,7 +311,7 @@ public class HuanxingLeetcode {
         return hair.next;
     }
 
-    public ListNode[] myReverse(ListNode head, ListNode tail) {
+    public ListNode[] myReverse(ListNode head,ListNode tail) {
         ListNode prev = tail.next;
         ListNode p = head;
         while (prev != tail) {
@@ -320,26 +320,26 @@ public class HuanxingLeetcode {
             prev = p;
             p = nex;
         }
-        return new ListNode[]{tail, head};
+        return new ListNode[]{tail,head};
     }
 
     /*填充每个节点的下一个右侧节点指针*/
     public Node connect(Node root) {
-        Node dummy = new Node(0);
+        Node dummy = new Node( 0 );
         dummy = root;
 
         root.next = null;
         Node leftNode = dummy;
-        while (root != null){
-            if(root.left!=null){
+        while (root != null) {
+            if (root.left != null) {
                 root.left.next = root.right;
             }
             root = root.left;
         }
 
         Node rightNode = dummy;
-        while (root != null){
-            if(root.left!=null){
+        while (root != null) {
+            if (root.left != null) {
                 root.left.next = root.right;
             }
             root = root.right;
@@ -349,23 +349,23 @@ public class HuanxingLeetcode {
     }
 
     /*寻找中位数*/
-    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+    public double findMedianSortedArrays(int[] nums1,int[] nums2) {
         int length1 = nums1.length;
         int length2 = nums2.length;
         int totalLength = length1 + length2;
         if (totalLength % 2 == 1) {
             int midIndex = totalLength / 2;
-            double median = getKthElement(nums1, nums2, midIndex + 1);
+            double median = getKthElement( nums1,nums2,midIndex + 1 );
             return median;
         } else {
             int midIndex1 = totalLength / 2 - 1;
             int midIndex2 = totalLength / 2;
-            double median = (getKthElement(nums1, nums2, midIndex1 + 1) + getKthElement(nums1, nums2, midIndex2 + 1)) / 2.0;
+            double median = (getKthElement( nums1,nums2,midIndex1 + 1 ) + getKthElement( nums1,nums2,midIndex2 + 1 )) / 2.0;
             return median;
         }
     }
 
-    public int getKthElement(int[] nums1, int[] nums2, int k) {
+    public int getKthElement(int[] nums1,int[] nums2,int k) {
         /* 主要思路：要找到第 k (k>1) 小的元素，那么就取 pivot1 = nums1[k/2-1] 和 pivot2 = nums2[k/2-1] 进行比较
          * 这里的 "/" 表示整除
          * nums1 中小于等于 pivot1 的元素有 nums1[0 .. k/2-2] 共计 k/2-1 个
@@ -391,13 +391,13 @@ public class HuanxingLeetcode {
                 return nums1[index1 + k - 1];
             }
             if (k == 1) {
-                return Math.min(nums1[index1], nums2[index2]);
+                return Math.min( nums1[index1],nums2[index2] );
             }
 
             // 正常情况
             int half = k / 2;
-            int newIndex1 = Math.min(index1 + half, length1) - 1;
-            int newIndex2 = Math.min(index2 + half, length2) - 1;
+            int newIndex1 = Math.min( index1 + half,length1 ) - 1;
+            int newIndex2 = Math.min( index2 + half,length2 ) - 1;
             int pivot1 = nums1[newIndex1], pivot2 = nums2[newIndex2];
             if (pivot1 <= pivot2) {
                 k -= (newIndex1 - index1 + 1);
@@ -410,28 +410,28 @@ public class HuanxingLeetcode {
     }
 
     /*合并2个有序列表*/
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        ListNode dummy = new ListNode(0);
-        ListNode next = new ListNode(0);
+    public ListNode mergeTwoLists(ListNode l1,ListNode l2) {
+        ListNode dummy = new ListNode( 0 );
+        ListNode next = new ListNode( 0 );
         dummy.next = next;
 
-        if((l1!=null?l1.val:Integer.MAX_VALUE) < (l2!=null?l2.val:Integer.MAX_VALUE)){
+        if ((l1 != null ? l1.val : Integer.MAX_VALUE) < (l2 != null ? l2.val : Integer.MAX_VALUE)) {
             next.val = l1.val;
             l1 = l1.next;
-        }else{
+        } else {
             next.val = l2.val;
             l2 = l2.next;
         }
 
 
-        while(l1 != null || l2 != null){
-            if((l1!=null?l1.val:Integer.MAX_VALUE) < (l2!=null?l2.val:Integer.MAX_VALUE)){
-                ListNode nex =  new ListNode(l1.val);
+        while (l1 != null || l2 != null) {
+            if ((l1 != null ? l1.val : Integer.MAX_VALUE) < (l2 != null ? l2.val : Integer.MAX_VALUE)) {
+                ListNode nex = new ListNode( l1.val );
                 next.next = nex;
                 next = nex;
                 l1 = l1.next;
-            }else{
-                ListNode nex =  new ListNode(l2.val);
+            } else {
+                ListNode nex = new ListNode( l2.val );
                 next.next = nex;
                 next = nex;
                 l2 = l2.next;
@@ -443,26 +443,26 @@ public class HuanxingLeetcode {
 
     /*有序数组的平方*/
     public int[] sortedSquares(int[] A) {
-        if(A.length == 0){
+        if (A.length == 0) {
             return new int[]{};
         }
         int n = A.length;
         int[] result = new int[n];
 
-        for(int i = 0;i < n;i++){
+        for (int i = 0; i < n; i++) {
             result[i] = A[i] * A[i];
         }
 
-        Arrays.sort(result);
+        Arrays.sort( result );
 
         return result;
     }
 
     /*数组中 任意3数之和是0 不重复*/
-    public List<List<Integer>> threeSum(int[] nums) {
+    public List <List <Integer>> threeSum(int[] nums) {
         int n = nums.length;
-        Arrays.sort(nums);
-        List<List<Integer>> ans = new ArrayList<List<Integer>>();
+        Arrays.sort( nums );
+        List <List <Integer>> ans = new ArrayList <List <Integer>>();
         // 枚举 a
         for (int first = 0; first < n; ++first) {
             // 需要和上一次枚举的数不相同
@@ -488,11 +488,11 @@ public class HuanxingLeetcode {
                     break;
                 }
                 if (nums[second] + nums[third] == target) {
-                    List<Integer> list = new ArrayList<Integer>();
-                    list.add(nums[first]);
-                    list.add(nums[second]);
-                    list.add(nums[third]);
-                    ans.add(list);
+                    List <Integer> list = new ArrayList <Integer>();
+                    list.add( nums[first] );
+                    list.add( nums[second] );
+                    list.add( nums[third] );
+                    ans.add( list );
                 }
             }
         }
@@ -505,12 +505,12 @@ public class HuanxingLeetcode {
         int l = 0;
         int r = height.length - 1;
 
-        while(l < r){
-            ans = Math.max(ans,Math.min(height[l],height[r]) * (r - l));
-            if(height[l] <= height[r]){
-                l ++;
-            }else{
-                r --;
+        while (l < r) {
+            ans = Math.max( ans,Math.min( height[l],height[r] ) * (r - l) );
+            if (height[l] <= height[r]) {
+                l++;
+            } else {
+                r--;
             }
         }
 
@@ -521,14 +521,108 @@ public class HuanxingLeetcode {
     public int candy(int[] ratings) {
         int ans = 0;
 
-        
 
         return ans;
     }
 
+    public boolean backspaceCompare(String S,String T) {
+        boolean result = false;
+        Stack <Character> stackS = new Stack();
+        Stack <Character> stackT = new Stack();
+
+        for (char s : S.toCharArray()) {
+            if (s == '#') {
+                if (!stackS.isEmpty()) {
+                    stackS.pop();
+                }
+            } else {
+                stackS.add( s );
+            }
+        }
+
+        for (char t : T.toCharArray()) {
+            if (t == '#') {
+                if (!stackT.isEmpty()) {
+                    stackT.pop();
+                }
+            } else {
+                stackT.add( t );
+            }
+        }
+
+        StringBuffer bufferS = new StringBuffer();
+        while (!stackS.isEmpty()) {
+            bufferS.append( stackS.pop() );
+        }
+
+        StringBuffer bufferT = new StringBuffer();
+        while (!stackT.isEmpty()) {
+            bufferT.append( stackT.pop() );
+        }
+
+        if (bufferS.toString().equals( bufferT.toString() )) {
+            result = true;
+        }
+
+        return result;
+    }
+
+    /*搜索旋转排序数组*/
+    public int[][] merge(int[][] intervals) {
+        if (intervals.length == 0) {
+            return new int[0][2];
+        }
+        Arrays.sort( intervals,new Comparator <int[]>() {
+            public int compare(int[] interval1,int[] interval2) {
+                return interval1[0] - interval2[0];
+            }
+        } );
+        List <int[]> merged = new ArrayList <int[]>();
+        for (int i = 0; i < intervals.length; ++i) {
+            int L = intervals[i][0], R = intervals[i][1];
+            if (merged.size() == 0 || merged.get( merged.size() - 1 )[1] < L) {
+                merged.add( new int[]{L,R} );
+            } else {
+                merged.get( merged.size() - 1 )[1] = Math.max( merged.get( merged.size() - 1 )[1],R );
+            }
+        }
+        return merged.toArray( new int[merged.size()][] );
+    }
+
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        int len = nums.length;
+        if(len == 0){
+            return result;
+        }
+
+        Deque<Integer> path = new ArrayDeque<>();
+        boolean[] used =  new boolean[len];
+        dfs(nums,len,0,path,used,result);
+        return result;
+    }
+
+    public void dfs(int[] nums,int len,int depth,Deque<Integer> path,boolean[] used,List<List<Integer>> result){
+        if(depth == len){
+            result.add(new ArrayList<>(path));
+        }
+
+        for (int i = 0; i < len; i++) {
+            if(used[i] == true){
+                continue;
+            }
+
+            path.addLast(nums[i]);
+            used[i] = true;
+            dfs(nums, len, depth, path, used, result);
+            used[i] = false;
+            path.removeLast();
+        }
+    }
+
     public static void main(String[] args) {
-        int result = new HuanxingLeetcode().maxArea(new int[]{1,3,6,2,5,4,18,17,2});
-        System.out.println(result);
+        boolean result = new HuanxingLeetcode().backspaceCompare( "bxj##tw","bxj###tw" );
+        System.out.println( result );
     }
 }
 
@@ -538,13 +632,14 @@ class Node {
     public Node right;
     public Node next;
 
-    public Node() {}
+    public Node() {
+    }
 
     public Node(int _val) {
         val = _val;
     }
 
-    public Node(int _val, Node _left, Node _right, Node _next) {
+    public Node(int _val,Node _left,Node _right,Node _next) {
         val = _val;
         left = _left;
         right = _right;
