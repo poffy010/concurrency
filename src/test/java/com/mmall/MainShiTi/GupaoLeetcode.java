@@ -130,7 +130,7 @@ public class GupaoLeetcode {
 
         //3. 复制随机指针的链表
         RandomNode head = new RandomNode(0);
-        System.out.println(new GupaoLeetcode().copyRandomNode(head));
+//        System.out.println(new GupaoLeetcode().copyRandomNode(head));
     }
 }
 
