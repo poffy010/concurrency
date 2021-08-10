@@ -1,4 +1,4 @@
-package com.mmall.concurrency.sync;
+package com.mmall.concurrency.example.sync;
 
 import lombok.extern.slf4j.Slf4j;
 
