@@ -1,12 +1,11 @@
 package com.mmall.concurrency.example.commonUnsafe;
 
-import com.google.common.collect.Maps;
 import com.mmall.concurrency.annoations.NotThreadSafe;
+import com.mmall.concurrency.annoations.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
+import org.codehaus.groovy.runtime.metaclass.ConcurrentReaderHashMap;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -19,15 +18,15 @@ import java.util.concurrent.Semaphore;
  * @desc
  */
 @Slf4j
-@NotThreadSafe
-public class HashMapExample1 {
+@ThreadSafe
+public class ConcurrentSkipListMapExample1 {
 
     //请求总数
     private static int clientTotal = 5000;
     //并发数
     private static int threadTotal = 200;
 
-    private static Map<Integer,Integer> map = Maps.newHashMap();
+    private static Map<Integer,Integer> map = new ConcurrentReaderHashMap();
 
     public static void main(String[] args) throws Exception{
         ExecutorService executorService = Executors.newCachedThreadPool();
