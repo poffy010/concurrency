@@ -1,5 +1,8 @@
 package com.mmall.concurrency.interrupt;
 
+import com.google.common.collect.Maps;
+
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -13,7 +16,14 @@ public class CountDemo {
     private static final Object LOCK = new Object();
 
     public static void main(String[] args) {
-        solution2();
+//        solution2();
+//        char c = '5';
+//        int number = 0;
+//        number = number * 10 + c - '0';
+//        System.out.println(number);
+        Map<String,String> map = Maps.newHashMap();
+        map.put("1","5");
+        System.out.println(map.getOrDefault("1","1"));
     }
 
     public static void solution2() {
